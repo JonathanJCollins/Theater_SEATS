@@ -1,0 +1,7 @@
+char array seats[][]
+function print (Char [][]){}
+
+
+function double[] setPrices() returns array
+function void listStats()
+function void sellTickets(pricesbyrow[], $char[][]) 
