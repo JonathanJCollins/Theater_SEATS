@@ -18,6 +18,20 @@ void printSeats(char seats[15][30]){
 	cout << endl;
 }
 
+void savePriceofSeats(double price[15]){
+	ofstream saveFile;
+	string fileName;
+	cout << "What would you like to name the save file?" << endl << "Please do not include a '.txt'" << endl;
+	cin >> fileName;
+	fileName.append(".txt");
+	saveFile.open(fileName);
+	for (int i = 0; i < 15; i++){
+		saveFile << price[i] << endl;
+	}
+	saveFile.close();
+	cout << "The file was saved as " << fileName << endl << endl;
+}
+
 int main(){
 	char seats[15][30];
 	double prices[15];
@@ -39,7 +53,7 @@ int main(){
 		
 		//**********TEST FOR SELL FUCTION< PLEASE UPDATE
 		for (int i = 0; i < 15; i++){
-			prices[i] = i;
+			prices[i] = 15 - i;
 		}
 		//********TEST FOR SELL FUCTION< PLEASE UPDATE
 
@@ -69,7 +83,7 @@ int main(){
 			sellTickets(prices, seats);
 		}
 		else if (selection == 4){
-			// SAVE PRICES TO TEXT FILE
+			savePriceofSeats(prices);
 		}
 		else {
 			cout << "INVALID SELECTION" << endl << endl;
