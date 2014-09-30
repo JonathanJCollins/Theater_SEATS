@@ -17,36 +17,57 @@ void printSeats(char seats[15][30]){
 	}
 	cout << endl;
 }
-
+//INCOMPLETE!
 double *getPriceofSeats(double prices[15]){
 	ifstream openFile;
 	string fileName;
 	double thePrices[15];
 	double manualPrice;
-	cout << "What is the name of the save file?" << endl << "Please do not include a '.txt'" << endl;
+	cout << "What is the name of the save file?" << endl 
+		 << "Please do not include a '.txt'" << endl;
 	cin >> fileName;
 	fileName.append(".txt");
 	openFile.open(fileName);
 	if (!openFile.is_open()) {
-		cout << "Could not open file " << fileName << endl << "Please Enter a starting value greater than 20: " << endl;
+		cout << "Could not open file " << fileName << endl 
+			 << "Please Enter a starting value greater than 20: " << endl;
 		cin >> manualPrice;
 		for (int i = 0; i < 15; i++){
-			prices[i] = manualPrice - i;
+			thePrices[i] = manualPrice - i;
 		}
 	}
 		else {
 			for (int i = 0; i < 15; i++){
-				openFile >> prices[i];
+				openFile >> thePrices[i];
 			}
 		}
 	return thePrices;
-}
+}//INCOMPLETE: HELP FIX PLEASE!
 
+void showStatistics(char seats[15][30], double price[15]){
+	int seatsSold = 0;
+	int save;
+	double totalSales = 0;
+
+	for (int i = 0; i < 15; i++){
+		save = 0;
+		for (int j = 0; j < 30; j++){
+			if (seats[i][j] == '*'){
+				save++;
+			}
+		}
+		seatsSold = seatsSold + save;
+		totalSales = totalSales + (save * price[i]);
+	}
+	cout << "|The current running statistics|" << endl;
+	return;
+}
 
 void savePriceofSeats(double price[15]){
 	ofstream saveFile;
 	string fileName;
-	cout << "What would you like to name the save file?" << endl << "Please do not include a '.txt'" << endl;
+	cout << "What would you like to name the save file?" << endl 
+			<< "Please do not include a '.txt'" << endl;
 	cin >> fileName;
 	fileName.append(".txt");
 	saveFile.open(fileName);
@@ -73,7 +94,8 @@ int main(){
 
 	if (yesNo == 1) {
 		double *openFilePrice = getPriceofSeats(prices);
-		for (int i = 0; i < 1; i++){
+		for (int i = 0; i < 15; i++){
+			cout << openFilePrice[i] << endl;
 			prices[i] = openFilePrice[i];
 		}
 	}
@@ -155,7 +177,7 @@ void singleTicket(double prices[], char seats[15][30]){
 		cout << "invalid row, please try again with a vailid number (1-15):" << endl;
 		cin >> y;
 	}
-	cout << "Please enter a seat number: " << endl;
+	cout << "Please enter a seat number (1-30): " << endl;
 	cin >> x1;
 	x1 = x1 - 1;
 	while (x1 > 30 || x1 < 0 ) {
