@@ -59,7 +59,9 @@ void showStatistics(char seats[15][30], double price[15]){
 		seatsSold = seatsSold + save;
 		totalSales = totalSales + (save * price[i]);
 	}
-	cout << "|The current running statistics|" << endl;
+	cout << "|The current running statistics|" << endl
+		<< "Total Seats Sold: " << seatsSold << endl
+		<< "Total Sales: " << totalSales << endl;
 	return;
 }
 
@@ -124,7 +126,7 @@ int main(){
 			printSeats(seats);
 		}
 		else if (selection == 2) {
-			// STATISTICS CHART
+			showStatistics(seats, prices);
 		}
 		else if (selection == 3) {
 			sellTickets(prices, seats);
