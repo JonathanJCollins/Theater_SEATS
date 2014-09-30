@@ -18,6 +18,31 @@ void printSeats(char seats[15][30]){
 	cout << endl;
 }
 
+double *getPriceofSeats(double prices[15]){
+	ifstream openFile;
+	string fileName;
+	double thePrices[15];
+	double manualPrice;
+	cout << "What is the name of the save file?" << endl << "Please do not include a '.txt'" << endl;
+	cin >> fileName;
+	fileName.append(".txt");
+	openFile.open(fileName);
+	if (!openFile.is_open()) {
+		cout << "Could not open file " << fileName << endl << "Please Enter a starting value greater than 20: " << endl;
+		cin >> manualPrice;
+		for (int i = 0; i < 15; i++){
+			prices[i] = manualPrice - i;
+		}
+	}
+		else {
+			for (int i = 0; i < 15; i++){
+				openFile >> prices[i];
+			}
+		}
+	return thePrices;
+}
+
+
 void savePriceofSeats(double price[15]){
 	ofstream saveFile;
 	string fileName;
@@ -35,6 +60,7 @@ void savePriceofSeats(double price[15]){
 int main(){
 	char seats[15][30];
 	double prices[15];
+	double manualPrice;
 
 	for (int i = 0; i < 15; ++i){
 		for (int j = 0; j < 30; ++j){
@@ -46,18 +72,17 @@ int main(){
 	cin >> yesNo;
 
 	if (yesNo == 1) {
-		// IMPORT FUNCTION HERE!
+		double *openFilePrice = getPriceofSeats(prices);
+		for (int i = 0; i < 1; i++){
+			prices[i] = openFilePrice[i];
+		}
 	}
 	else {
-		// MANUAL SET PRICE FUNCTION
-		
-		//**********TEST FOR SELL FUCTION< PLEASE UPDATE
+		cout << "Please Enter a starting value greater than 20: " << endl;
+		cin >> manualPrice;
 		for (int i = 0; i < 15; i++){
-			prices[i] = 15 - i;
+			prices[i] = manualPrice - i;
 		}
-		//********TEST FOR SELL FUCTION< PLEASE UPDATE
-
-
 	}
 
 	int selection = 0;
